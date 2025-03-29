@@ -39,4 +39,7 @@ npm-debug.log
 /priv/static/images/*.mp4
 /_build/
 /erl_crash.dump
-/deps/heroicons/.git/
+/deps/heroicons/.git/*.mp4
+*.mov
+*.avi
+videos/
