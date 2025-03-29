@@ -89,7 +89,7 @@ defmodule CoffeeShopWeb.Components.Layouts.Hero do
         <div class="grid grid-cols-1 gap-y-5 py-12 md:grid-cols-2 md:gap-x-12 md:gap-y-8 lg:gap-x-20 lg:gap-y-16">
           <div>
             <h1 class="text-4xl font-bold text-black md:text-6xl lg:text-7xl">
-              CONTÁCTANOS Y DESPIERTA TUS SENTIDOS
+              CONTÁCTANOS Y PRENDE TUS SENTIDOS
             </h1>
           </div>
           <div class="flex flex-col items-center md:items-start">
