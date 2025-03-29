@@ -35,3 +35,8 @@ coffee_shop-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Archivos grandes identificados
+/priv/static/images/*.mp4
+/_build/
+/erl_crash.dump
+/deps/heroicons/.git/
