@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="csrf-token" content={get_csrf_token()}/>
+    <title><%= assigns[:page_title] || "CoffeeShop" %> · CoffeeShop</title>
+
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"}/>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
+  </head>
+  <body class="bg-amber-50">
+    <!-- Navbar a ancho completo -->
+    <div class="w-full">
+      <.navbar />
+    </div>
+
+    <main class="flex flex-col">
+     
+
+      <!-- Contenido principal a ancho completo -->
+      <div id="productos" class="w-full">
+        <div class="w-full">
+          <.flash_group flash={@flash} />
+          <%= @inner_content %>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer a ancho completo -->
+    <div class="w-full">
+      <.footer />
+    </div>
+  </body>
+</html>

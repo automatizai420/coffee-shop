@@ -1,0 +1,149 @@
+<.flash_group flash={@flash} />
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+    
+    <!-- Sección de imagen con efecto de escala -->
+    <div class="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-8">
+      <img 
+        src={CoffeeShopWeb.ProductHTML.get_product_image(@product)} 
+        alt={"Imagen de #{@product.name}"} 
+        class={"transition-all duration-300 #{if @selected_size == "500g", do: "scale-110", else: "scale-100"} max-h-96 w-auto object-contain"}
+        loading="lazy"
+        id="product-image"
+      />
+    </div>
+    
+    <!-- Sección de detalles -->
+    <div class="w-full md:w-1/2 p-6 md:p-8">
+      <h1 class="text-3xl font-bold mb-4 text-gray-900"><%= @product.name %></h1>
+      
+      <!-- Selector de tamaño -->
+      <div class="mb-8" id="size-selector">
+        <label class="block text-lg font-medium text-gray-800 mb-3">Seleccione tamaño:</label>
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            data-size="250g"
+            data-price={@product.base_price_250g}
+            class={"size-option py-3 px-4 rounded-lg border-2 text-center transition-all #{if @selected_size == "250g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
+          >
+            <span class="block font-bold">250g</span>
+            <span class="block mt-1">$<%= @product.base_price_250g %></span>
+          </button>
+          <button
+            data-size="500g"
+            data-price={@product.base_price_500g}
+            class={"size-option py-3 px-4 rounded-lg border-2 text-center transition-all #{if @selected_size == "500g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
+          >
+            <span class="block font-bold">500g</span>
+            <span class="block mt-1">$<%= @product.base_price_500g %></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Descripción completa -->
+      <div class="mb-8 text-gray-700 whitespace-pre-line">
+        <%= case @product.name do %>
+          <% "Chocolate Vainilla" -> %>
+            Chocolate de leche, Vainilla y Caramelo. Café de pausas y recuerdos de infancia
+            Variedad: Catuaí 99
+            Secado natural
+            Acidez: Baja, cítrica
+          
+          <% "Flores Silvestres" -> %>
+            Madera, Manzanilla, Flores. Dulzura ligera y redonda como beso de siesta.
+            En las colinas de Alta Mogiana, Brasil, donde la tradición cafetera se cultiva por generaciones, seleccionamos con esmero los granos más excepcionales para ti. Madera, Manzanilla, Flores.
+          
+          <% "Mango" -> %>
+            Mango, Miel, maracuyá maduro. Cuerpo jugoso y gentil, como tarde de primavera
+            En las colinas de Alta Mogiana, Brasil, donde la tradición cafetera se cultiva por generaciones, seleccionamos con esmero los granos más excepcionales para ti.
+          
+          <% "Chocolate Caramelo" -> %>
+            Notas a Mango, Miel, Caramelo, Chocolate. De cuerpo estructurado y armonioso
+            Variedad: blend
+            Fermentación Controlada y Secado Natural
+            Acidez: Media
+          
+          <% _ -> %>
+            <%= @product.description %>
+        <% end %>
+      </div>
+      
+      <!-- Precio destacado -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-8">
+        <p class="text-2xl font-bold text-amber-900" id="price-display">
+          Precio: $<%= if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g %>
+        </p>
+        <p class="text-sm text-amber-700 mt-1">Incluye envío estándar</p>
+      </div>
+
+      <!-- Botón de WhatsApp directo -->
+      <a
+        href={
+          "https://wa.me/5215512345678?text=" <>
+          URI.encode_www_form(
+            "¡Hola! Estoy interesado en el producto: #{@product.name}\n" <>
+            "Tamaño: #{@selected_size}\n" <>
+            "Precio: $#{if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g}\n\n" <>
+            "Más información: #{CoffeeShopWeb.Endpoint.url()}/products/#{@product.id}"
+          )
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 text-lg"
+        id="whatsapp-button"
+      >
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span>Comprar por WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript para manejar cambios -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sizeOptions = document.querySelectorAll('.size-option');
+  const priceDisplay = document.getElementById('price-display');
+  const productImage = document.getElementById('product-image');
+  const whatsappButton = document.getElementById('whatsapp-button');
+  
+  sizeOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      // Remover estilos activos
+      sizeOptions.forEach(opt => {
+        opt.classList.remove('bg-amber-100', 'border-amber-500', 'text-amber-900');
+        opt.classList.add('border-gray-200');
+      });
+      
+      // Aplicar estilos al seleccionado
+      this.classList.add('bg-amber-100', 'border-amber-500', 'text-amber-900');
+      this.classList.remove('border-gray-200');
+      
+      // Actualizar precio
+      const selectedPrice = this.getAttribute('data-price');
+      priceDisplay.textContent = `Precio: $${selectedPrice}`;
+      
+      // Efecto de escala en imagen
+      const selectedSize = this.getAttribute('data-size');
+      if(selectedSize === "500g") {
+        productImage.classList.remove('scale-100');
+        productImage.classList.add('scale-110');
+      } else {
+        productImage.classList.remove('scale-110');
+        productImage.classList.add('scale-100');
+      }
+      
+      // Actualizar enlace WhatsApp
+      const productName = "<%= @product.name %>";
+      const url = "<%= CoffeeShopWeb.Endpoint.url() %>/products/<%= @product.id %>";
+      whatsappButton.href = `https://wa.me/5215512345678?text=${encodeURIComponent(
+        `¡Hola! Estoy interesado en el producto: ${productName}\n` +
+        `Tamaño: ${selectedSize}\n` +
+        `Precio: $${selectedPrice}\n\n` +
+        `Más información: ${url}`
+      )}`;
+    });
+  });
+});
+</script>
