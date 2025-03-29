@@ -43,3 +43,4 @@ npm-debug.log
 *.mov
 *.avi
 videos/
+.DS_Store
