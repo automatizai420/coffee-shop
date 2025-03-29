@@ -31,24 +31,24 @@ defmodule CoffeeShopWeb.Components.Layouts.Hero do
       </div>
       
       <!-- Contenido sobre el video -->
-<div class="relative z-10 h-full flex flex-col justify-end items-center text-center px-4 sm:px-6 lg:px-8 pb-20 md:pb-32">
-  <div class="max-w-4xl mx-auto text-white">
-    <!-- Título y subtítulo -->
-    <p class="text-xl md:text-2xl mb-6 max-w-2xl mx-auto animate-fade-in delay-100 font-light">
-      Selección premium de granos de café de las mejores regiones del mundo
-    </p>
-    
-    <!-- Botón CTA con borde blanco -->
-    <div class="animate-fade-in delay-200">
-      <a
-        href="#productos"
-        class="inline-block bg-transparent border-2 border-white hover:bg-white hover:text-black text-white font-light py-3 px-10 rounded-full text-lg md:text-xl transition-all duration-300"
-      >
-        Explorar productos
-      </a>
-    </div>
-  </div>
-</div>
+      <div class="relative z-10 h-full flex flex-col justify-end items-center text-center px-4 sm:px-6 lg:px-8 pb-20 md:pb-32">
+        <div class="max-w-4xl mx-auto text-white">
+          <!-- Título y subtítulo -->
+          <p class="text-xl md:text-2xl mb-6 max-w-2xl mx-auto animate-fade-in delay-100 font-light">
+            Selección premium de granos de café de las mejores regiones del mundo
+          </p>
+          
+          <!-- Botón CTA con borde blanco -->
+          <div class="animate-fade-in delay-200">
+            <a
+              href="#productos"
+              class="inline-block bg-transparent border-2 border-white hover:bg-white hover:text-black text-white font-light py-3 px-10 rounded-full text-lg md:text-xl transition-all duration-300"
+            >
+              Explorar productos
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- Flecha indicadora de scroll -->
       <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
@@ -92,17 +92,17 @@ defmodule CoffeeShopWeb.Components.Layouts.Hero do
               CONTÁCTANOS Y DESPIERTA TUS SENTIDOS
             </h1>
           </div>
-          <div>
+          <div class="flex flex-col items-center md:items-start">
             <p class="text-lg text-black mt-4 mb-6 sm:text-xl">
               Te esperamos en nuestro WhatsApp para ofrecerte una experiencia personalizada. 
               Responderemos todas tus dudas y te mostraremos nuestras mejores selecciones de café.
             </p>
-            <div class="mt-6 flex flex-wrap gap-4">
+            <div class="w-full md:w-auto">
               <a
-                href="https://wa.me/tunumerodewhatsapp"
+                href="https://wa.me/56953348331?text=Hola,%20me%20interesan%20sus%20productos%20de%20café"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="bg-black text-white rounded-full inline-flex items-center justify-center px-6 py-3 hover:bg-[#dcbc2c] transition-all text-lg"
+                class="w-full md:w-auto border-2 border-black bg-transparent text-black hover:bg-black hover:text-[#ffe44c] rounded-full inline-flex items-center justify-center px-8 py-3 transition-all duration-300 text-lg font-medium"
               >
                 Escríbenos por WhatsApp
               </a>
