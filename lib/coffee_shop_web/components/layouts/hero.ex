@@ -30,8 +30,8 @@ defmodule CoffeeShopWeb.Components.Layouts.Hero do
         </video>
       </div>
       
-      <!-- Contenido sobre el video -->
-      <div class="relative z-10 h-full flex flex-col justify-end items-center text-center px-4 sm:px-6 lg:px-8 pb-20 md:pb-32">
+        <!-- Contenido sobre el video -->
+        <div class="relative z-10 h-full flex flex-col justify-end items-center text-center px-4 sm:px-6 lg:px-8 pb-20 md:pb-32">
         <div class="max-w-4xl mx-auto text-white">
           <!-- Título y subtítulo -->
           <p class="text-xl md:text-2xl mb-6 max-w-2xl mx-auto animate-fade-in delay-100 font-light">
