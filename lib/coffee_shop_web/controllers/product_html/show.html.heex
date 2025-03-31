@@ -3,99 +3,165 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
   <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
     
-    <!-- Sección de imagen con efecto de escala -->
-    <div class="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-8">
+    <!-- Sección de imagen con mayor tamaño en PC -->
+    <div class="w-full md:w-1/2 lg:w-3/5 bg-gray-50 flex items-center justify-center p-4 relative">
+      <!-- Badge de calidad -->
+      <div class="absolute top-4 left-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+        Café de Selección
+      </div>
+      
       <img 
         src={CoffeeShopWeb.ProductHTML.get_product_image(@product)} 
         alt={"Imagen de #{@product.name}"} 
-        class={"transition-all duration-300 #{if @selected_size == "500g", do: "scale-110", else: "scale-100"} max-h-96 w-auto object-contain"}
+        class={"transition-all duration-300 #{if @selected_size == "500g", do: "scale-110", else: "scale-100"} max-h-[550px] w-auto object-contain"}
         loading="lazy"
         id="product-image"
       />
     </div>
     
     <!-- Sección de detalles -->
-    <div class="w-full md:w-1/2 p-6 md:p-8">
-      <h1 class="text-3xl font-bold mb-4 text-gray-900"><%= @product.name %></h1>
+    <div class="w-full md:w-1/2 lg:w-2/5 p-6 md:p-8">
+      <!-- Marca registrada y rating -->
+      <div class="flex justify-between items-start mb-2">
+        <div>
+          <span class="text-xs text-gray-500">Prende Café®</span>
+          <h1 class="text-3xl font-bold text-gray-900"><%= @product.name %><sup class="text-xs align-top">™</sup></h1>
+        </div>
+        <div class="flex items-center">
+          <div class="flex text-amber-400">
+            <%= for _ <- 1..5 do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292z" />
+              </svg>
+            <% end %>
+          </div>
+          <span class="text-sm text-gray-500 ml-1">(24)</span>
+        </div>
+      </div>
       
-      <!-- Selector de tamaño -->
-      <div class="mb-8" id="size-selector">
+      <!-- Nombre del producto -->
+      <div class="mb-4">
+        <span class="text-sm font-medium text-amber-600">selección-premium > <%= String.downcase(String.replace(@product.name, " ", "-")) %></span>
+      </div>
+
+      <!-- REORDENADO: Primero mostramos el precio -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+        <p class="text-2xl font-bold text-amber-900" id="price-display">
+          $<%= if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g %>
+          <span class="text-lg font-normal">CLP</span>
+        </p>
+        <p class="text-sm text-amber-700 mt-1 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Envío estándar incluido • Recíbelo en 2-3 días hábiles
+        </p>
+      </div>
+
+      <!-- REORDENADO: Selector de tamaño en fila con WhatsApp abajo -->
+      <div class="mb-6" id="size-selector">
         <label class="block text-lg font-medium text-gray-800 mb-3">Seleccione tamaño:</label>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="flex gap-3 mb-4">
           <button
             data-size="250g"
-            data-price={@product.base_price_250g}
-            class={"size-option py-3 px-4 rounded-lg border-2 text-center transition-all #{if @selected_size == "250g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
+            class={"size-option flex-1 py-3 px-2 rounded-lg border-2 flex flex-col items-center #{if @selected_size == "250g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
           >
-            <span class="block font-bold">250g</span>
-            <span class="block mt-1">$<%= @product.base_price_250g %></span>
+            <span class="font-bold">250g</span>
+            <span class="text-xs text-gray-500">≈ 15 tazas</span>
           </button>
           <button
             data-size="500g"
-            data-price={@product.base_price_500g}
-            class={"size-option py-3 px-4 rounded-lg border-2 text-center transition-all #{if @selected_size == "500g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
+            class={"size-option flex-1 py-3 px-2 rounded-lg border-2 flex flex-col items-center #{if @selected_size == "500g", do: "bg-amber-100 border-amber-500 text-amber-900", else: "border-gray-200 hover:border-amber-300"}"}
           >
-            <span class="block font-bold">500g</span>
-            <span class="block mt-1">$<%= @product.base_price_500g %></span>
+            <span class="font-bold">500g</span>
+            <span class="text-xs text-gray-500">≈ 30 tazas</span>
+            <span class="text-xs text-green-600 font-bold">Mejor elección</span>
           </button>
+        </div>
+
+        <!-- REORDENADO: Botón de WhatsApp justo debajo del selector de tamaño -->
+        <a
+          href={
+            "https://wa.me/56953348331?text=" <>
+            URI.encode_www_form(
+              "¡Hola! Estoy interesado en el producto: #{@product.name}\n" <>
+              "Tamaño: #{@selected_size}\n" <>
+              "Precio: $#{if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g} CLP\n\n" <>
+              "Más información: #{CoffeeShopWeb.Endpoint.url()}/products/#{@product.id}"
+            )
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 text-lg"
+          id="whatsapp-button"
+        >
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span>Comprar por WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Métodos de preparación -->
+      <div class="mb-6">
+        <h3 class="text-sm font-medium text-gray-800 mb-2">Preparación recomendada:</h3>
+        <div class="flex gap-3 flex-wrap">
+          <div class="flex items-center text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+            Filtrado
+          </div>
+          <div class="flex items-center text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            Prensa Francesa
+          </div>
+          <div class="flex items-center text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            Cafetera
+          </div>
         </div>
       </div>
 
-      <!-- Descripción completa -->
-      <div class="mb-8 text-gray-700 whitespace-pre-line">
-        <%= case @product.name do %>
-          <% "Chocolate Vainilla" -> %>
-            Chocolate de leche, Vainilla y Caramelo. Café de pausas y recuerdos de infancia
-            Variedad: Catuaí 99
-            Secado natural
-            Acidez: Baja, cítrica
-          
-          <% "Flores Silvestres" -> %>
-            Madera, Manzanilla, Flores. Dulzura ligera y redonda como beso de siesta.
-            En las colinas de Alta Mogiana, Brasil, donde la tradición cafetera se cultiva por generaciones, seleccionamos con esmero los granos más excepcionales para ti. Madera, Manzanilla, Flores.
-          
-          <% "Mango" -> %>
-            Mango, Miel, maracuyá maduro. Cuerpo jugoso y gentil, como tarde de primavera
-            En las colinas de Alta Mogiana, Brasil, donde la tradición cafetera se cultiva por generaciones, seleccionamos con esmero los granos más excepcionales para ti.
-          
-          <% "Chocolate Caramelo" -> %>
-            Notas a Mango, Miel, Caramelo, Chocolate. De cuerpo estructurado y armonioso
-            Variedad: blend
-            Fermentación Controlada y Secado Natural
-            Acidez: Media
-          
-          <% _ -> %>
-            <%= @product.description %>
-        <% end %>
+      <!-- Acordeón para descripción y detalles -->
+      <div class="border-t border-gray-200 pt-4">
+        <details class="group" open>
+          <summary class="flex justify-between items-center cursor-pointer list-none">
+            <h3 class="font-bold text-gray-900">Descripción</h3>
+            <span class="transition group-open:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-3 text-gray-700 space-y-3">
+            <p class="italic">"<%= @product.name %> - Una experiencia que despierta tus sentidos cada mañana"</p>
+            
+            <%= case @product.name do %>
+              <% "Chocolate Vainilla" -> %>
+                <p>Este blend exclusivo combina granos de café arábica con notas naturales de chocolate de leche, vainilla y caramelo. Perfecto para esos momentos de pausa que te transportan a recuerdos de infancia.</p>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li><span class="font-medium">Variedad:</span> Catuaí 99</li>
+                  <li><span class="font-medium">Proceso:</span> Secado natural</li>
+                  <li><span class="font-medium">Acidez:</span> Baja, cítrica</li>
+                </ul>
+                
+              <% "Flores Silvestres" -> %>
+                <p>Cultivado en las colinas de Alta Mogiana, Brasil, donde generaciones de caficultores han perfeccionado su arte. Notas dominantes de madera noble, manzanilla y flores silvestres, con una dulzura ligera que recuerda a un beso de siesta veraniega.</p>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li><span class="font-medium">Altitud:</span> 1,100-1,300 msnm</li>
+                  <li><span class="font-medium">Tueste:</span> Medio</li>
+                  <li><span class="font-medium">Recomendado para:</span> Tardes de lectura</li>
+                </ul>
+                
+              <% _ -> %>
+                <p><%= @product.description %></p>
+            <% end %>
+          </div>
+        </details>
       </div>
-      
-      <!-- Precio destacado -->
-      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-8">
-        <p class="text-2xl font-bold text-amber-900" id="price-display">
-          Precio: $<%= if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g %>
-        </p>
-        <p class="text-sm text-amber-700 mt-1">Incluye envío estándar</p>
-      </div>
-
-      <!-- Botón de WhatsApp directo -->
-      <a
-        href={
-          "https://wa.me/5215512345678?text=" <>
-          URI.encode_www_form(
-            "¡Hola! Estoy interesado en el producto: #{@product.name}\n" <>
-            "Tamaño: #{@selected_size}\n" <>
-            "Precio: $#{if @selected_size == "250g", do: @product.base_price_250g, else: @product.base_price_500g}\n\n" <>
-            "Más información: #{CoffeeShopWeb.Endpoint.url()}/products/#{@product.id}"
-          )
-        }
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 text-lg"
-        id="whatsapp-button"
-      >
-        <i class="fab fa-whatsapp text-2xl"></i>
-        <span>Comprar por WhatsApp</span>
-      </a>
     </div>
   </div>
 </div>
@@ -120,10 +186,6 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('bg-amber-100', 'border-amber-500', 'text-amber-900');
       this.classList.remove('border-gray-200');
       
-      // Actualizar precio
-      const selectedPrice = this.getAttribute('data-price');
-      priceDisplay.textContent = `Precio: $${selectedPrice}`;
-      
       // Efecto de escala en imagen
       const selectedSize = this.getAttribute('data-size');
       if(selectedSize === "500g") {
@@ -134,13 +196,17 @@ document.addEventListener('DOMContentLoaded', function() {
         productImage.classList.add('scale-100');
       }
       
+      // Actualizar precio
+      const price = selectedSize === "250g" ? "<%= @product.base_price_250g %>" : "<%= @product.base_price_500g %>";
+      priceDisplay.innerHTML = `$${price} <span class="text-lg font-normal">CLP</span>`;
+      
       // Actualizar enlace WhatsApp
       const productName = "<%= @product.name %>";
       const url = "<%= CoffeeShopWeb.Endpoint.url() %>/products/<%= @product.id %>";
-      whatsappButton.href = `https://wa.me/5215512345678?text=${encodeURIComponent(
+      whatsappButton.href = `https://wa.me/56953348331?text=${encodeURIComponent(
         `¡Hola! Estoy interesado en el producto: ${productName}\n` +
         `Tamaño: ${selectedSize}\n` +
-        `Precio: $${selectedPrice}\n\n` +
+        `Precio: $${price} CLP\n\n` +
         `Más información: ${url}`
       )}`;
     });
