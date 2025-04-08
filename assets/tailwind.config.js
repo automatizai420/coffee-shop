@@ -27,6 +27,12 @@ module.exports = {
           '50%': { transform: 'translateY(-20px)' }
         }
       },
+      
+      fontFamily: {
+        'bebas': ['"Bebas Neue Pro"', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+
       colors: {
         brand: "#FD4F00",
         'amber': {

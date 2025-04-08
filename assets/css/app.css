@@ -2,4 +2,101 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* This file is for your main application CSS */
+/* Importar fuentes */
+@font-face {
+  font-family: 'Bebas Neue Pro';
+  src: url('/fonts/BebasNeuePro-Bold.woff2') format('woff2'),
+       url('/fonts/BebasNeuePro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Neue Pro';
+  src: url('/fonts/BebasNeuePro-SemiBold.woff2') format('woff2'),
+       url('/fonts/BebasNeuePro-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Neue Pro';
+  src: url('/fonts/BebasNeuePro-Regular.woff2') format('woff2'),
+       url('/fonts/BebasNeuePro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-SemiBold.woff2') format('woff2'),
+       url('/fonts/Poppins-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Regular.woff2') format('woff2'),
+       url('/fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Definir clases de tipografía */
+@layer base {
+  /* Título grande */
+  .font-heading-xl {
+    font-family: 'Bebas Neue Pro', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Título mediano */
+  .font-heading-lg {
+    font-family: 'Bebas Neue Pro', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Título pequeño */
+  .font-heading-md {
+    font-family: 'Bebas Neue Pro', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Título más pequeño */
+  .font-heading-sm {
+    font-family: 'Bebas Neue Pro', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Texto normal */
+  .font-body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+  /* Texto ligero */
+  .font-body-light {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+}
+
+#main-nav {
+  text-transform: uppercase;
+  font-family: 'Bebas Neue', sans-serif;
+}
+

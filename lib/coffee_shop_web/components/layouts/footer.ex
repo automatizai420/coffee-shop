@@ -13,7 +13,7 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
             <.link navigate={~p"/"} class="block mb-4">
               <img src={~p"/images/logo2.png"} alt="Coffee Shop Logo" class="h-48 w-auto object-contain" />
             </.link>
-            <p class="text-sm text-gray-400 mb-4 text-center md:text-left">
+            <p class="text-sm text-gray-400 mb-4 text-center md:text-left font-poppins">
               Tu destino para el mejor café artesanal. Seleccionamos los granos más finos para tu experiencia perfecta.
             </p>
             <!-- Redes Sociales -->
@@ -39,13 +39,13 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
 
           <!-- Productos -->
           <div class="flex flex-col items-center md:items-start">
-            <h3 class="text-lg font-semibold text-white mb-4">Productos</h3>
+            <h3 class="text-lg font-bebas font-semibold text-white mb-4 uppercase tracking-wide">Productos</h3>
             <ul class="space-y-2 text-center md:text-left">
               <%= for product <- CoffeeShop.Products.list_products() do %>
                 <li>
                   <.link 
                     navigate={~p"/products/#{product.id}"}
-                    class="text-gray-400 hover:text-[#fff100] transition-colors text-sm"
+                    class="text-gray-400 hover:text-[#fff100] transition-colors text-sm font-bebas uppercase tracking-wide"
                   >
                     <%= product.name %>
                   </.link>
@@ -56,20 +56,20 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
 
           <!-- Newsletter -->
           <div class="flex flex-col items-center md:items-start">
-            <h3 class="text-lg font-semibold text-white mb-4 text-center md:text-left">Newsletter</h3>
-            <p class="text-sm text-gray-400 mb-3 text-center md:text-left">
+            <h3 class="text-lg font-bebas font-semibold text-white mb-4 text-center md:text-left uppercase tracking-wide">Newsletter</h3>
+            <p class="text-sm text-gray-400 mb-3 text-center md:text-left font-poppins">
               Suscríbete para recibir promociones y novedades.
             </p>
             <form class="flex flex-col space-y-3 w-full md:w-auto">
               <input
                 type="email"
                 placeholder="Tu email"
-                class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-1 focus:ring-[#fff100] text-sm w-full"
+                class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-1 focus:ring-[#fff100] text-sm w-full font-poppins"
                 required
               />
               <button
                 type="submit"
-                class="bg-[#fff100] hover:bg-yellow-300 text-black font-medium py-2 px-4 rounded-md transition-colors text-sm w-full md:w-auto"
+                class="bg-[#fff100] hover:bg-yellow-300 text-black font-bebas font-medium py-2 px-4 rounded-md transition-colors text-sm w-full md:w-auto uppercase tracking-wide"
               >
                 Suscribirse
               </button>
@@ -79,8 +79,8 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
           <!-- Horario + Botón Contacto -->
           <div class="flex flex-col items-center md:items-start">
             <div class="mb-6 w-full"> <!-- Ajuste de margen para alinear botones -->
-              <h3 class="text-lg font-semibold text-white mb-4 text-center md:text-left">Horario</h3>
-              <ul class="space-y-2 text-sm text-gray-400 w-full text-center md:text-left">
+              <h3 class="text-lg font-bebas font-semibold text-white mb-4 text-center md:text-left uppercase tracking-wide">Horario</h3>
+              <ul class="space-y-2 text-sm text-gray-400 w-full text-center md:text-left font-poppins">
                 <li class="flex justify-between md:justify-start md:space-x-4">
                   <span>Lunes - Viernes</span>
                   <span>7:00 - 20:00</span>
@@ -99,7 +99,7 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
             <a 
               href="https://wa.me/56953348331?text=Hola,%20estoy%20en%20su%20web%20y%20necesito%20más%20información" 
               target="_blank"
-              class="bg-[#fff100] hover:bg-yellow-300 text-black px-6 py-2 rounded-md transition-colors text-sm font-medium w-full md:w-auto text-center"
+              class="bg-[#fff100] hover:bg-yellow-300 text-black px-6 py-2 rounded-md transition-colors text-sm font-bebas font-medium w-full md:w-auto text-center uppercase tracking-wide"
             >
               Contáctanos
             </a>
@@ -109,25 +109,25 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
         <!-- Footer inferior -->
         <div class="border-t border-gray-800 pt-6">
           <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-xs text-gray-500 mb-4 md:mb-0 text-center md:text-left">
+            <p class="text-xs text-gray-500 mb-4 md:mb-0 text-center md:text-left font-poppins">
               © 2025 PRENDE CAFE. Todos los derechos reservados.
             </p>
             <div class="flex flex-wrap justify-center space-x-4 text-xs">
               <.link 
                 navigate={~p"/privacy"} 
-                class="text-gray-500 hover:text-[#fff100] transition-colors"
+                class="text-gray-500 hover:text-[#fff100] transition-colors font-poppins"
               >
                 Política de Privacidad
               </.link>
               <.link 
                 navigate={~p"/terms"} 
-                class="text-gray-500 hover:text-[#fff100] transition-colors"
+                class="text-gray-500 hover:text-[#fff100] transition-colors font-poppins"
               >
                 Términos de Servicio
               </.link>
               <.link 
                 navigate={~p"/cookies"} 
-                class="text-gray-500 hover:text-[#fff100] transition-colors"
+                class="text-gray-500 hover:text-[#fff100] transition-colors font-poppins"
               >
                 Cookies
               </.link>
