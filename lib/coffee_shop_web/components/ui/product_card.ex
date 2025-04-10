@@ -45,7 +45,7 @@ defmodule CoffeeShopWeb.Components.UI.ProductCard do
   defp get_image_path(product_name) do
     case String.downcase(product_name) do
       "chocolate vainilla" -> ~p"/images/products/chocolate/desktop_paquete_chocolate.png"
-      "flores silvestres" -> ~p"/images/products/flores/desktop_paquete_flores.png"
+      "manzanilla" -> ~p"/images/products/flores/desktop_paquete_flores.png"
       "mango" -> ~p"/images/products/mango/desktop_paquete_mango.png"
       "chocolate caramelo" -> ~p"/images/products/caramelo/caramelo.png"
       _ -> ~p"/images/products/default.png"

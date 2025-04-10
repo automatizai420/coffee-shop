@@ -6,7 +6,7 @@ defmodule CoffeeShopWeb.ProductHTML do
     def get_product_image(product) do
       case String.downcase(product.name) do
         "chocolate vainilla" -> ~p"/images/products/chocolate/desktop_paquete_chocolate.png"
-        "flores silvestres" -> ~p"/images/products/flores/desktop_paquete_flores.png"
+        "manzanilla" -> ~p"/images/products/flores/desktop_paquete_flores.png"
         "mango" -> ~p"/images/products/mango/desktop_paquete_mango.png"
         "chocolate caramelo" -> ~p"/images/products/caramelo/caramelo.png"
         _ -> ~p"/images/products/default.png"

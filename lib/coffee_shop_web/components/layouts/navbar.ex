@@ -58,7 +58,7 @@ defmodule CoffeeShopWeb.Components.Layouts.Navbar do
                               <%= case product.name do %>
                                 <% "Chocolate Vainilla" -> %>
                                   NOTAS DE CHOCOLATE, VAINILLA Y CARAMELO
-                                <% "Flores Silvestres" -> %>
+                                <% "Manzanilla" -> %>
                                   NOTAS DE MADERA NOBLE Y FLORES SILVESTRES
                                 <% "Mango" -> %>
                                   MANGO, MIEL, MARACUYÁ, MADURO Y DULCE

@@ -18,9 +18,13 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
             </p>
             <!-- Redes Sociales -->
             <div class="flex space-x-4">
-              <a href="#" class="text-gray-400 hover:text-[#fff100] transition-colors">
-                <span class="sr-only">Facebook</span>
-                <.icon name="fa-brands fa-facebook" class="w-5 h-5" />
+              <a 
+                href="https://www.tiktok.com/@prendecafe" 
+                target="_blank"
+                class="text-gray-400 hover:text-[#fff100] transition-colors"
+              >
+                <span class="sr-only">TikTok</span>
+                <.icon name="fa-brands fa-tiktok" class="w-6 h-6" />
               </a>
               <a 
                 href="https://www.instagram.com/prendecafe/" 
@@ -28,11 +32,14 @@ defmodule CoffeeShopWeb.Components.Layouts.Footer do
                 class="text-gray-400 hover:text-[#fff100] transition-colors"
               >
                 <span class="sr-only">Instagram</span>
-                <.icon name="fa-brands fa-instagram" class="w-5 h-5" />
+                <.icon name="fa-brands fa-instagram" class="w-6 h-6" />
               </a>
-              <a href="#" class="text-gray-400 hover:text-[#fff100] transition-colors">
-                <span class="sr-only">X (Twitter)</span>
-                <.icon name="fa-brands fa-x-twitter" class="w-5 h-5" />
+              <a 
+                href="mailto:contacto@prendecafe.cl" 
+                class="text-gray-400 hover:text-[#fff100] transition-colors"
+              >
+                <span class="sr-only">Email</span>
+                <.icon name="fa-solid fa-envelope" class="w-6 h-6" />
               </a>
             </div>
           </div>
